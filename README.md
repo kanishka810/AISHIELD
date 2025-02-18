@@ -1,2 +1,0 @@
-# AISHIELD
-Cybersecurity using ai 

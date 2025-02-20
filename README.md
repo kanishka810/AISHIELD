@@ -1,73 +1,83 @@
-# ⚠️⚠️⚠️ Summary ⚠️⚠️⚠️
+# Phishing URL Detection 
+![image](https://user-images.githubusercontent.com/79131292/144742825-23367f0f-9e67-4c99-ba1f-b86a187675c9.png)
+![image](https://user-images.githubusercontent.com/79131292/144742785-d183f50a-52d6-4296-a43a-90a1ee3502d8.png)
 
-⚠️⚠️⚠️ The **`sklearn` PyPI package is deprecated use `scikit-learn` instead** ⚠️⚠️⚠️
+## Table of Content
+  * [Introduction](#introduction)
+  * [Installation](#installation)
+  * [Directory Tree](#directory-tree)
+  * [Result](#result)
+  * [Conclusion](#conclusion)
 
-See [section below](#how-to-fix-the-error-for-the-main-use-cases) for some advice
-about how to fix the error for the main use cases.
 
-Note that the `scikit-learn` PyPI package was always the official PyPI package from
-the start of the project: this does not change.
+## Introduction
 
-What changed is that the `sklearn` PyPI package, which is an empty package with a
-dependency to `scikit-learn`, now fails to install.
-See [section below](#reason-for-the-deprecation) that explain the motivations
-behind this change.
+The Internet has become an indispensable part of our life, However, It also has provided opportunities to anonymously perform malicious activities like Phishing. Phishers try to deceive their victims by social engineering or creating mockup websites to steal information such as account ID, username, password from individuals and organizations. Although many methods have been proposed to detect phishing websites, Phishers have evolved their methods to escape from these detection methods. One of the most successful methods for detecting these malicious activities is Machine Learning. This is because most Phishing attacks have some common characteristics which can be identified by machine learning methods. To see project click [here]("/").
 
-# How to fix the error for the main use cases
 
-- use `pip install scikit-learn` rather than `pip install sklearn`
-- replace `sklearn` by `scikit-learn` in your pip requirements files
-  (`requirements.txt`, `setup.py,` `setup.cfg`, `Pipfile`, etc ...)
-- if the `sklearn` package is used by one of your dependencies
-  it would be great if you take some time to track which package uses
-  `sklearn` instead of `scikit-learn` and report it to their issue tracker
-- as a last resort, set the environment variable
-  `SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True` to avoid this error
+## Installation
+The Code is written in Python 3.6.10. If you don't have Python installed you can find it [here](https://www.python.org/downloads/). If you are using a lower version of Python you can upgrade using the pip package, ensuring you have the latest version of pip. To install the required packages and libraries, run this command in the project directory after [cloning](https://www.howtogeek.com/451360/how-to-clone-a-github-repository/) the repository:
+```bash
+pip install -r requirements.txt
+```
 
-If the previous advice does not cover your use case, feel free to [open an issue](
-https://github.com/scikit-learn/sklearn-pypi-package/issues/new) about it.
+## Directory Tree 
+```
+├── pickle
+│   ├── model.pkl
+├── static
+│   ├── styles.css
+├── templates
+│   ├── index.html
+├── Phishing URL Detection.ipynb
+├── Procfile
+├── README.md
+├── app.py
+├── feature.py
+├── phishing.csv
+├── requirements.txt
 
-# Reason for the deprecation
 
-`sklearn` package on PyPI exists to prevent malicious actors from using the
-`sklearn` package, since `sklearn` (the import name) and `scikit-learn` (the
-project name) are sometimes used interchangeably. `scikit-learn` is the actual
-package name and should be used with pip, e.g. for:
-- pip commands: `pip install scikit-learn`
-- pip requirement files (`requirements.txt`, `setup.py,` `setup.cfg`,
-  `Pipfile`, etc ...)
+```
 
-At the time of writing (October 2022) `sklearn` downloads is about 1/5 of the
-`scikit-learn` downloads on PyPI so a lot of people are using it.
+## Technologies Used
 
-There are some edge cases with the way the PyPI `sklearn` package is
-implemented:
-- `pip install sklearn==1.1.3` will say that the 1.1.3 version does not exist,
-  which is confusing. The only available version at the time of writing of
-  `sklearn` is 0.0.
-- `pip uninstall sklearn` will actually not uninstall `scikit-learn`, you can
-  still do `import sklearn` afterwards
-- it can be confusing to have both `sklearn` and `scikit-learn` in the `pip
-  list` output, prompting questions like "why do I have scikit-learn 1.1.3 and
-  sklearn 0.0, and what does it even mean"?
+![](https://forthebadge.com/images/badges/made-with-python.svg)
 
-# Historical brownout schedule (from 2022-12-01 to 2023-11-31)
+[<img target="_blank" src="https://upload.wikimedia.org/wikipedia/commons/3/31/NumPy_logo_2020.svg" width=200>](https://numpy.org/doc/) [<img target="_blank" src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Pandas_logo.svg" width=200>](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html)
+[<img target="_blank" src="https://upload.wikimedia.org/wikipedia/commons/8/84/Matplotlib_icon.svg" width=100>](https://matplotlib.org/)
+[<img target="_blank" src="https://scikit-learn.org/stable/_static/scikit-learn-logo-small.png" width=200>](https://scikit-learn.org/stable/) 
+[<img target="_blank" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScq-xocLctL07Jy0tpR_p9w0Q42_rK1aAkNfW6sm3ucjFKWML39aaJPgdhadyCnEiK7vw&usqp=CAU" width=200>](https://flask.palletsprojects.com/en/2.0.x/) 
 
-Starting 2023 December 1st, trying to install the `sklearn` PyPI package raises
-an error.
+## Result
 
-The table shows the historical brownout schedule that was used between 2022
-December 1st and 2023 December 1st, in order to get people aware of the
-deprecation and give them some time to adapt. During these dates and time
-windows, an exception was raised if you attempted to install the `sklearn`
-package from PyPI.
+Accuracy of various model used for URL detection
+<br>
 
-| Dates                                 | Window(s)                      |
-|---------------------------------------|--------------------------------|
-| 2022 December 1st - 2023 January 31st | :00-:05 every hour             |
-| 2023 February 1st - March 31st        | :00-:10 every hour             |
-| 2023 April 1st - May 31st             | :00-:15 every hour             |
-| 2023 June 1st - July 31st             | :00-:10 and :30-:40 every hour |
-| 2023 August 1st - September 30th      | :00-:15 and :30-:45 every hour |
-| 2023 October 1st - November 30th      | :00-:20 and :30-:50 every hour |
-| 2023 December 1st onwards             | always raise an exception      |
+<br>
+
+||ML Model|	Accuracy|  	f1_score|	Recall|	Precision|
+|---|---|---|---|---|---|
+0|	Gradient Boosting Classifier|	0.974|	0.977|	0.994|	0.986|
+1|	CatBoost Classifier|	        0.972|	0.975|	0.994|	0.989|
+2|	XGBoost Classifier| 	        0.969|	0.973|	0.993|	0.984|
+3|	Multi-layer Perceptron|	        0.969|	0.973|	0.995|	0.981|
+4|	Random Forest|	                0.967|	0.971|	0.993|	0.990|
+5|	Support Vector Machine|	        0.964|	0.968|	0.980|	0.965|
+6|	Decision Tree|      	        0.960|	0.964|	0.991|	0.993|
+7|	K-Nearest Neighbors|        	0.956|	0.961|	0.991|	0.989|
+8|	Logistic Regression|        	0.934|	0.941|	0.943|	0.927|
+9|	Naive Bayes Classifier|     	0.605|	0.454|	0.292|	0.997|
+
+Feature importance for Phishing URL Detection 
+<br><br>
+![image](https://user-images.githubusercontent.com/79131292/144603941-19044aae-7d7b-4e9a-88a8-6adfd8626f77.png)
+
+
+
+
+## Conclusion
+1. The final take away form this project is to explore various machine learning models, perform Exploratory Data Analysis on phishing dataset and understanding their features. 
+2. Creating this notebook helped me to learn a lot about the features affecting the models to detect whether URL is safe or not, also I came to know how to tuned model and how they affect the model performance.
+3. The final conclusion on the Phishing dataset is that the some feature like "HTTTPS", "AnchorURL", "WebsiteTraffic" have more importance to classify URL is phishing URL or not. 
+4. Gradient Boosting Classifier currectly classify URL upto 97.4% respective classes and hence reduces the chance of malicious attachments.
